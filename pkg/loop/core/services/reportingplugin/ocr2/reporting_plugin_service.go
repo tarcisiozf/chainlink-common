@@ -9,10 +9,10 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/pipeline"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/telemetry"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/validation"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayerset"
 	"github.com/smartcontractkit/grpc-proxy/proxy"
 	"google.golang.org/grpc"
 
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayerset"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"

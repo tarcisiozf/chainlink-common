@@ -4,6 +4,7 @@ import (
 	"context"
 	"testing"
 
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayerset/inprocessprovider"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
 
@@ -13,7 +14,6 @@ import (
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	ocr2test "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ocr2/test"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayerset/inprocessprovider"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 )
 

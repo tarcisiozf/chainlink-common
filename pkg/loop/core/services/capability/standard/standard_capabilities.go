@@ -14,6 +14,7 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/pipeline"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/settings"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/telemetry"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayerset"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
 
@@ -26,7 +27,6 @@ import (
 	gatewayconnectorpb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/gatewayconnector"
 	oraclefactorypb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/oraclefactory"
 	relayersetpb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/relayerset"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayerset"
 	"github.com/smartcontractkit/chainlink-common/pkg/services"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"
 )

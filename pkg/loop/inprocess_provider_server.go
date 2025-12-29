@@ -7,10 +7,10 @@ package loop
 import (
 	"context"
 
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayerset/inprocessprovider"
 	"google.golang.org/grpc"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayerset/inprocessprovider"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 )
 
