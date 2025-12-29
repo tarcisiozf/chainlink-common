@@ -6,7 +6,7 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 
 	tonpb "github.com/smartcontractkit/chainlink-common/pkg/chains/ton"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 	tontypes "github.com/smartcontractkit/chainlink-common/pkg/types/chains/ton"
 	valuespb "github.com/smartcontractkit/chainlink-protos/cre/go/values/pb"

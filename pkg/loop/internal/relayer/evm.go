@@ -11,7 +11,7 @@ import (
 
 	evmpb "github.com/smartcontractkit/chainlink-common/pkg/chains/evm"
 	chaincommonpb "github.com/smartcontractkit/chainlink-common/pkg/loop/chain-common"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 	evmtypes "github.com/smartcontractkit/chainlink-common/pkg/types/chains/evm"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/query"

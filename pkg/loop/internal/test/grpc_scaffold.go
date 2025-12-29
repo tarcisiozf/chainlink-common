@@ -13,8 +13,8 @@ import (
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
-	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
-	loopnettest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net/test"
+	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/net"
+	loopnettest "github.com/smartcontractkit/chainlink-common/pkg/loop/net/test"
 )
 
 type Client interface {

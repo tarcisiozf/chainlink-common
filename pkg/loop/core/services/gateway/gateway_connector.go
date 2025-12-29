@@ -9,8 +9,8 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 
 	jsonrpc "github.com/smartcontractkit/chainlink-common/pkg/jsonrpc2"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	pb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/gatewayconnector"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"
 )
 

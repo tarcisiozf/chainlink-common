@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
+	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 )
 
 // Broker is a test implementation of loopnet.Broker.

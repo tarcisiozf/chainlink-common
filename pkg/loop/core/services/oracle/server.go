@@ -6,8 +6,8 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	oraclepb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/oracle"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"
 )
 

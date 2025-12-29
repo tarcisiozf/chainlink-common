@@ -5,9 +5,9 @@ import (
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/gateway"
-	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
-	loopnettest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net/test"
 	pb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/gatewayconnector"
+	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/net"
+	loopnettest "github.com/smartcontractkit/chainlink-common/pkg/loop/net/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"
 
 	"github.com/stretchr/testify/require"

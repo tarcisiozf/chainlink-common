@@ -15,8 +15,8 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/reportingplugin/ocr3/test"
 	telemetrytest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/telemetry/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
-	nettest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
+	nettest "github.com/smartcontractkit/chainlink-common/pkg/loop/net/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/services/servicetest"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"
 )

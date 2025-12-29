@@ -14,9 +14,9 @@ import (
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop"
-	nettest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net/test"
 	reportingplugintest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/reportingplugin/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
+	nettest "github.com/smartcontractkit/chainlink-common/pkg/loop/net/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/reportingplugins"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"

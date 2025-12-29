@@ -24,7 +24,7 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/config/build"
 	"github.com/smartcontractkit/chainlink-common/pkg/contexts"
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
-	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
+	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 )
 
 type GRPCOpts = loopnet.GRPCOpts

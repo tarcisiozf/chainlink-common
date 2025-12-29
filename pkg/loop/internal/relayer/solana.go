@@ -6,7 +6,7 @@ import (
 
 	solpb "github.com/smartcontractkit/chainlink-common/pkg/chains/solana"
 	chaincommonpb "github.com/smartcontractkit/chainlink-common/pkg/loop/chain-common"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/chains/solana"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/query"

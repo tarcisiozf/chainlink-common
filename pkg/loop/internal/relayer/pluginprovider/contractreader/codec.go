@@ -6,7 +6,7 @@ import (
 	"google.golang.org/grpc"
 
 	codecpb "github.com/smartcontractkit/chainlink-common/pkg/internal/codec"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 )
 

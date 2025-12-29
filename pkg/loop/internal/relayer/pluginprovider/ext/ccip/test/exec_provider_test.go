@@ -9,10 +9,10 @@ import (
 	"google.golang.org/grpc"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
-	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	ccippb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/ccip"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/ccip"
 	looptest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
+	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 )
 

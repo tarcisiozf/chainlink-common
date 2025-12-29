@@ -7,10 +7,10 @@ import (
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
 
-	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	ccippb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/ccip"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/ccip"
 	looptest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
+	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 )
 
 func TestStaticCommitGasEstimator(t *testing.T) {

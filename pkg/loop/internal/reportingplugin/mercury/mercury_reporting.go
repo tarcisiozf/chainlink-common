@@ -11,9 +11,9 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb"
 	mercurypb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/mercury"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 )
 
 type PluginFactoryClient struct {
