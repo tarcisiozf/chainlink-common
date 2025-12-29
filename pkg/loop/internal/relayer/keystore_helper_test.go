@@ -4,9 +4,9 @@ import (
 	"context"
 
 	"github.com/hashicorp/go-plugin"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/keystore"
 	"google.golang.org/grpc"
 
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/keystore"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"

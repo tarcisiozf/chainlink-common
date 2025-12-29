@@ -8,12 +8,12 @@ import (
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop"
-	errorlogtest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/errorlog/test"
-	keyvaluestoretest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/keyvalue/test"
-	pipelinetest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/pipeline/test"
-	relayersettest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/relayerset/test"
-	ocr3test "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/reportingplugin/ocr3/test"
-	telemetrytest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/telemetry/test"
+	errorlogtest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/errorlog/test"
+	keyvaluestoretest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/keyvalue/test"
+	pipelinetest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/pipeline/test"
+	relayersettest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/relayerset/test"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/reportingplugin/ocr3/test"
+	telemetrytest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/telemetry/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
 	nettest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
@@ -44,7 +44,7 @@ func TestLOOPPService(t *testing.T) {
 	}{
 		// A generic plugin with a median provider
 		{
-			Plugin:       ocr3test.OCR3ReportingPluginWithMedianProviderName,
+			Plugin:       ocr3_test.OCR3ReportingPluginWithMedianProviderName,
 			ProviderType: loop.PluginMedianName,
 		},
 		// A generic plugin with a plugin provider
@@ -71,7 +71,7 @@ func TestLOOPPService(t *testing.T) {
 			servicetest.Run(t, looppSvc)
 
 			t.Run("control", func(t *testing.T) {
-				ocr3test.OCR3ReportingPluginFactory(t, looppSvc)
+				ocr3_test.OCR3ReportingPluginFactory(t, looppSvc)
 			})
 
 			t.Run("Kill", func(t *testing.T) {
@@ -80,7 +80,7 @@ func TestLOOPPService(t *testing.T) {
 				// wait for relaunch
 				time.Sleep(2 * goplugin.KeepAliveTickDuration)
 
-				ocr3test.OCR3ReportingPluginFactory(t, looppSvc)
+				ocr3_test.OCR3ReportingPluginFactory(t, looppSvc)
 			})
 
 			t.Run("Reset", func(t *testing.T) {
@@ -89,7 +89,7 @@ func TestLOOPPService(t *testing.T) {
 				// wait for relaunch
 				time.Sleep(2 * goplugin.KeepAliveTickDuration)
 
-				ocr3test.OCR3ReportingPluginFactory(t, looppSvc)
+				ocr3_test.OCR3ReportingPluginFactory(t, looppSvc)
 			})
 		})
 	}
@@ -100,7 +100,7 @@ func TestLOOPPService_recovery(t *testing.T) {
 	var limit atomic.Int32
 	looppSvc := NewLOOPPService(logger.Test(t), loop.GRPCOpts{}, func() *exec.Cmd {
 		h := HelperProcessCommand{
-			Command: ocr3test.OCR3ReportingPluginWithMedianProviderName,
+			Command: ocr3_test.OCR3ReportingPluginWithMedianProviderName,
 			Limit:   int(limit.Add(1)),
 		}
 		return h.New()
@@ -115,5 +115,5 @@ func TestLOOPPService_recovery(t *testing.T) {
 		relayersettest.RelayerSet{})
 	servicetest.Run(t, looppSvc)
 
-	ocr3test.OCR3ReportingPluginFactory(t, looppSvc)
+	ocr3_test.OCR3ReportingPluginFactory(t, looppSvc)
 }

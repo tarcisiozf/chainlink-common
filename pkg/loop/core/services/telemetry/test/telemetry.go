@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/telemetry"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
 
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/telemetry"
 	testtypes "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test/types"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"
 )

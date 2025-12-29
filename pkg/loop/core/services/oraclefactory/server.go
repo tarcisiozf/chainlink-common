@@ -4,12 +4,12 @@ import (
 	"context"
 	"fmt"
 
+	oraclesrv "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/oracle"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/reportingplugin/ocr3"
 	"github.com/smartcontractkit/libocr/offchainreporting2plus/types"
 	"google.golang.org/grpc"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
-	oraclesrv "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/oracle"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/reportingplugin/ocr3"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	oraclepb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/oracle"
 	oraclefactorypb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/oraclefactory"

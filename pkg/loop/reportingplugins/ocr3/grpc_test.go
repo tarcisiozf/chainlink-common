@@ -4,16 +4,16 @@ import (
 	"testing"
 	"time"
 
+	errorlogtest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/errorlog/test"
+	keyvaluestoretest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/keyvalue/test"
+	pipelinetest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/pipeline/test"
+	relayersettest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/relayerset/test"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/reportingplugin/ocr3/test"
+	telemetrytest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/telemetry/test"
 	"github.com/stretchr/testify/require"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop"
-	errorlogtest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/errorlog/test"
-	keyvaluestoretest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/keyvalue/test"
-	pipelinetest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/pipeline/test"
-	relayersettest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/relayerset/test"
-	ocr3test "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/reportingplugin/ocr3/test"
-	telemetrytest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/telemetry/test"
 	nettest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net/test"
 	reportingplugintest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/reportingplugin/test"
 
@@ -44,7 +44,7 @@ func PluginGenericTest(t *testing.T, p core.OCR3ReportingPluginClient) {
 			relayersettest.RelayerSet{})
 		require.NoError(t, err)
 
-		ocr3test.OCR3ReportingPluginFactory(t, factory)
+		ocr3_test.OCR3ReportingPluginFactory(t, factory)
 	})
 	t.Run("ValidationService", func(t *testing.T) {
 		ctx := t.Context()
@@ -62,9 +62,9 @@ func TestGRPCService_MedianProvider(t *testing.T) {
 	stopCh := newStopCh(t)
 	test.PluginTest(
 		t,
-		ocr3test.OCR3ReportingPluginWithMedianProviderName,
+		ocr3_test.OCR3ReportingPluginWithMedianProviderName,
 		&GRPCService[types.MedianProvider]{
-			PluginServer: ocr3test.MedianServer(lggr),
+			PluginServer: ocr3_test.MedianServer(lggr),
 			BrokerConfig: loop.BrokerConfig{
 				Logger: lggr,
 				StopCh: stopCh,
@@ -83,7 +83,7 @@ func TestGRPCService_PluginProvider(t *testing.T) {
 		t,
 		PluginServiceName,
 		&GRPCService[types.PluginProvider]{
-			PluginServer: ocr3test.AgnosticPluginServer(lggr),
+			PluginServer: ocr3_test.AgnosticPluginServer(lggr),
 			BrokerConfig: loop.BrokerConfig{
 				Logger: logger.Test(t),
 				StopCh: stopCh,

@@ -7,6 +7,8 @@ import (
 	"math/big"
 
 	"github.com/google/uuid"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/capability"
+	ks "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/keystore"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -17,8 +19,6 @@ import (
 	solpb "github.com/smartcontractkit/chainlink-common/pkg/chains/solana"
 	tonpb "github.com/smartcontractkit/chainlink-common/pkg/chains/ton"
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/capability"
-	ks "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/keystore"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb"

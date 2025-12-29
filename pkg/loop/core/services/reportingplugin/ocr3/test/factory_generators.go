@@ -4,12 +4,12 @@ import (
 	"context"
 	"fmt"
 
+	pipelinetest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/pipeline/test"
+	telemetrytest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/telemetry/test"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/validation/test"
 	"google.golang.org/grpc"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
-	pipelinetest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/pipeline/test"
-	telemetrytest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/telemetry/test"
-	validationtest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/validation/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	mediantest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/median/test"
 	ocr2test "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ocr2/test"

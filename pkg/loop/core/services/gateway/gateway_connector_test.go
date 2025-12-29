@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/core/services/gateway"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/gateway"
 	loopnet "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net"
 	loopnettest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/net/test"
 	pb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/gatewayconnector"
