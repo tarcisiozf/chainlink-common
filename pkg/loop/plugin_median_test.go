@@ -6,12 +6,12 @@ import (
 
 	"github.com/hashicorp/go-plugin"
 	keystoretest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/keystore/test"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ext/median/test"
+	test2 "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/test"
 	"github.com/stretchr/testify/require"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop"
-	mediantest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/median/test"
-	relayertest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/services/servicetest"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
@@ -26,24 +26,24 @@ func TestPluginMedian(t *testing.T) {
 		lggr := logger.Test(t)
 		test.PluginTest(t, loop.PluginMedianName,
 			&loop.GRPCPluginMedian{
-				PluginServer: mediantest.NewMedianFactoryServer(lggr),
+				PluginServer: median_test.NewMedianFactoryServer(lggr),
 				BrokerConfig: loop.BrokerConfig{Logger: lggr, StopCh: stopCh},
 			},
-			mediantest.PluginMedian)
+			median_test.PluginMedian)
 	})
 
 	t.Run("proxy", func(t *testing.T) {
 		lggr := logger.Test(t)
 		test.PluginTest(t, loop.PluginRelayerName,
 			&loop.GRPCPluginRelayer{
-				PluginServer: relayertest.NewPluginRelayer(lggr, false),
+				PluginServer: test2.NewPluginRelayer(lggr, false),
 				BrokerConfig: loop.BrokerConfig{Logger: logger.Test(t), StopCh: stopCh}},
 			func(t *testing.T, pr loop.PluginRelayer) {
 				p := newMedianProvider(t, pr)
-				pm := mediantest.PluginMedianTest{MedianProvider: p}
+				pm := median_test.PluginMedianTest{MedianProvider: p}
 				test.PluginTest(t, loop.PluginMedianName,
 					&loop.GRPCPluginMedian{
-						PluginServer: mediantest.NewMedianFactoryServer(lggr),
+						PluginServer: median_test.NewMedianFactoryServer(lggr),
 						BrokerConfig: loop.BrokerConfig{Logger: logger.Test(t), StopCh: stopCh}},
 					pm.TestPluginMedian)
 			})
@@ -65,12 +65,12 @@ func TestPluginMedianExec(t *testing.T) {
 	i, err := client.Dispense(loop.PluginMedianName)
 	require.NoError(t, err)
 
-	mediantest.PluginMedian(t, i.(core.PluginMedian))
+	median_test.PluginMedian(t, i.(core.PluginMedian))
 
 	t.Run("proxy", func(t *testing.T) {
 		pr := newPluginRelayerExec(t, false, stopCh)
 		p := newMedianProvider(t, pr)
-		pm := mediantest.PluginMedianTest{MedianProvider: p}
+		pm := median_test.PluginMedianTest{MedianProvider: p}
 		pm.TestPluginMedian(t, i.(core.PluginMedian))
 	})
 }
@@ -88,7 +88,7 @@ func newMedianProvider(t *testing.T, pr loop.PluginRelayer) types.MedianProvider
 	r, err := pr.NewRelayer(ctx, test.ConfigTOML, keystoretest.Keystore, keystoretest.Keystore, nil)
 	require.NoError(t, err)
 	servicetest.Run(t, r)
-	p, err := r.NewPluginProvider(ctx, relayertest.RelayArgs, relayertest.PluginArgs)
+	p, err := r.NewPluginProvider(ctx, test2.RelayArgs, test2.PluginArgs)
 	mp, ok := p.(types.MedianProvider)
 	require.True(t, ok)
 	require.NoError(t, err)

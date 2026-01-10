@@ -7,6 +7,7 @@ import (
 
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/errorlog"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/reportingplugin/ocr2"
+	medianprovider "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ext/median"
 	"github.com/smartcontractkit/grpc-proxy/proxy"
 	"github.com/smartcontractkit/libocr/offchainreporting2/reportingplugin/median"
 	"google.golang.org/grpc"
@@ -15,7 +16,6 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb"
-	medianprovider "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/median"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"

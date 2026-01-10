@@ -6,6 +6,7 @@ import (
 
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/oracle"
 	reportingplugin "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/reportingplugin/ocr3"
+	ocr3relayer "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ocr3"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/durationpb"
 
@@ -13,7 +14,6 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
 	ocr3pb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/ocr3"
 	oraclefactorypb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/oraclefactory"
-	ocr3relayer "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ocr3"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"
 )

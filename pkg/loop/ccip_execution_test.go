@@ -7,6 +7,7 @@ import (
 	"time"
 
 	keystoretest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/keystore/test"
+	test2 "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ext/ccip/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
@@ -15,7 +16,6 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
-	cciptest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/ccip/test"
 	reportingplugintest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/reportingplugin/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/services/servicetest"
@@ -28,7 +28,7 @@ func TestExecService(t *testing.T) {
 	lggr := logger.Test(t)
 	exec := loop.NewExecutionService(logger.Test(t), loop.GRPCOpts{}, func() *exec.Cmd {
 		return NewHelperProcessCommand(loop.CCIPExecutionLOOPName, false, 0)
-	}, cciptest.ExecutionProvider(lggr), cciptest.ExecutionProvider(lggr), 0, 0, "")
+	}, test2.ExecutionProvider(lggr), test2.ExecutionProvider(lggr), 0, 0, "")
 	hook := exec.PluginService.XXXTestHook()
 	servicetest.Run(t, exec)
 
@@ -65,7 +65,7 @@ func TestExecService_recovery(t *testing.T) {
 			Limit:   int(limit.Add(1)),
 		}
 		return h.New()
-	}, cciptest.ExecutionProvider(lggr), cciptest.ExecutionProvider(lggr), 0, 0, "")
+	}, test2.ExecutionProvider(lggr), test2.ExecutionProvider(lggr), 0, 0, "")
 	servicetest.Run(t, exec)
 
 	reportingplugintest.RunFactory(t, exec)
@@ -90,7 +90,7 @@ func TestExecLOOP(t *testing.T) {
 	remoteExecFactory := instance.(types.CCIPExecutionFactoryGenerator)
 	require.NoError(t, err)
 
-	cciptest.RunExecutionLOOP(t, remoteExecFactory)
+	test2.RunExecutionLOOP(t, remoteExecFactory)
 
 	t.Run("proxy: exec loop <--> relayer loop", func(t *testing.T) {
 		// launch the relayer as external process via the main program
@@ -100,7 +100,7 @@ func TestExecLOOP(t *testing.T) {
 		assert.Contains(t, err.Error(), "BCF-3061")
 		if err == nil {
 			// test to run when BCF-3061 is fixed
-			cciptest.ExecutionLOOPTester{
+			test2.ExecutionLOOPTester{
 				SrcProvider:        remoteProvider,
 				DstProvider:        remoteProvider,
 				SrcChainID:         0,
@@ -118,7 +118,7 @@ func newExecutionProvider(t *testing.T, pr loop.PluginRelayer) (types.CCIPExecPr
 	servicetest.Run(t, r)
 
 	// TODO: fix BCF-3061. we expect an error here until then.
-	p, err := r.NewPluginProvider(ctx, cciptest.ExecutionRelayArgs, cciptest.ExecutionPluginArgs)
+	p, err := r.NewPluginProvider(ctx, test2.ExecutionRelayArgs, test2.ExecutionPluginArgs)
 	if err != nil {
 		return nil, err
 	}

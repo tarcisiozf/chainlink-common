@@ -3,9 +3,9 @@ package inprocessprovider
 import (
 	"fmt"
 
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayer"
 	"google.golang.org/grpc"
 
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 )
 

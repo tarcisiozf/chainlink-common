@@ -5,6 +5,8 @@ import (
 	"errors"
 	"fmt"
 
+	relayer2 "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/contractreader"
 	"google.golang.org/grpc"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/chains/evm"
@@ -14,8 +16,6 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/relayerset"
-	rel "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/contractreader"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"
@@ -154,7 +154,7 @@ func (k *Client) EVM(relayID types.RelayID) (types.EVMService, error) {
 	if k.evmRelayerSetClient == nil {
 		return nil, errors.New("evmRelayerSetClient can't be nil")
 	}
-	return rel.NewEVMCClient(&evmClient{
+	return relayer2.NewEVMCClient(&evmClient{
 		relayID: relayID,
 		client:  k.evmRelayerSetClient,
 	}), nil
@@ -164,7 +164,7 @@ func (k *Client) TON(relayID types.RelayID) (types.TONService, error) {
 	if k.tonRelayerSetClient == nil {
 		return nil, errors.New("tonRelayerSetClient can't be nil")
 	}
-	return rel.NewTONClient(&tonClient{
+	return relayer2.NewTONClient(&tonClient{
 		relayID: relayID,
 		client:  k.tonRelayerSetClient,
 	}), nil
@@ -175,7 +175,7 @@ func (k *Client) Solana(relayID types.RelayID) (types.SolanaService, error) {
 		return nil, errors.New("solanaRelayerSetClient can't be nil")
 	}
 
-	return rel.NewSolanaClient(
+	return relayer2.NewSolanaClient(
 		&solClient{
 			relayID: relayID,
 			client:  k.solanaRelayerSetClient,

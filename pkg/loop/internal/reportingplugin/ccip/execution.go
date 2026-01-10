@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/reportingplugin/ocr2"
+	ccipprovider "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ext/ccip"
 	"github.com/smartcontractkit/grpc-proxy/proxy"
 	"google.golang.org/grpc"
 
@@ -12,7 +13,6 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb"
 	ccippb "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/ccip"
-	ccipprovider "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/ccip"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 )

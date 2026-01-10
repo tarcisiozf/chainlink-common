@@ -3,7 +3,7 @@ package testutils
 import (
 	"testing"
 
-	test "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/contractreader/test"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/contractreader/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/interfacetests"
 )
 
@@ -13,9 +13,9 @@ import (
 
 // WrapContractReaderTesterForLoop allows you to test a [types.ContractReader] and [types.ContractWriter] implementation behind a LOOP server
 func WrapContractReaderTesterForLoop(wrapped interfacetests.ChainComponentsInterfaceTester[*testing.T]) interfacetests.ChainComponentsInterfaceTester[*testing.T] {
-	return test.WrapContractReaderTesterForLoop(wrapped)
+	return chaincomponentstest.WrapContractReaderTesterForLoop(wrapped)
 }
 
 func WrapCodecTesterForLoop(wrapped interfacetests.CodecInterfaceTester) interfacetests.CodecInterfaceTester {
-	return test.WrapCodecTesterForLoop(wrapped)
+	return chaincomponentstest.WrapCodecTesterForLoop(wrapped)
 }

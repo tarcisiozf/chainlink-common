@@ -7,6 +7,7 @@ import (
 	"time"
 
 	keystoretest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/keystore/test"
+	test2 "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ext/ccip/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
@@ -15,7 +16,6 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
-	cciptest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/ccip/test"
 	reportingplugintest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/reportingplugin/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/services/servicetest"
@@ -28,7 +28,7 @@ func TestCommitService(t *testing.T) {
 	lggr := logger.Test(t)
 	commit := loop.NewCommitService(lggr, loop.GRPCOpts{}, func() *exec.Cmd {
 		return NewHelperProcessCommand(loop.CCIPCommitLOOPName, false, 0)
-	}, cciptest.CommitProvider(lggr))
+	}, test2.CommitProvider(lggr))
 
 	t.Run("service not nil", func(t *testing.T) {
 		require.NotPanics(t, func() { commit.Name() })
@@ -70,7 +70,7 @@ func TestCommitService_recovery(t *testing.T) {
 			Limit:   int(limit.Add(1)),
 		}
 		return h.New()
-	}, cciptest.CommitProvider(lggr))
+	}, test2.CommitProvider(lggr))
 	servicetest.Run(t, commit)
 
 	reportingplugintest.RunFactory(t, commit)
@@ -95,7 +95,7 @@ func TestCommitLOOP(t *testing.T) {
 	remoteCommitFactory := instance.(types.CCIPCommitFactoryGenerator)
 	require.NoError(t, err)
 
-	cciptest.RunCommitLOOP(t, remoteCommitFactory)
+	test2.RunCommitLOOP(t, remoteCommitFactory)
 
 	t.Run("proxy: commit loop <--> relayer loop", func(t *testing.T) {
 		// launch the relayer as external process via the main program
@@ -105,7 +105,7 @@ func TestCommitLOOP(t *testing.T) {
 		assert.Contains(t, err.Error(), "BCF-3061")
 		if err == nil {
 			// test to run when BCF-3061 is fixed
-			cciptest.CommitLOOPTester{CCIPCommitProvider: remoteProvider}.Run(t, remoteCommitFactory)
+			test2.CommitLOOPTester{CCIPCommitProvider: remoteProvider}.Run(t, remoteCommitFactory)
 		}
 	})
 }
@@ -117,7 +117,7 @@ func newCommitProvider(t *testing.T, pr loop.PluginRelayer) (types.CCIPCommitPro
 	servicetest.Run(t, r)
 
 	// TODO: fix BCF-3061. we expect an error here until then.
-	p, err := r.NewPluginProvider(ctx, cciptest.CommitRelayArgs, cciptest.CommitPluginArgs)
+	p, err := r.NewPluginProvider(ctx, test2.CommitRelayArgs, test2.CommitPluginArgs)
 	if err != nil {
 		return nil, err
 	}

@@ -8,6 +8,7 @@ import (
 	"time"
 
 	keystoretest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/keystore/test"
+	relayertest "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/test"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap/zapcore"
 	"go.uber.org/zap/zaptest/observer"
@@ -17,7 +18,6 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/goplugin"
-	relayertest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/services/servicetest"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core/mocks"

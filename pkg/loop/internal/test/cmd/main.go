@@ -10,14 +10,14 @@ import (
 	sctest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/capability/standard/test"
 	ocr2test "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/reportingplugin/ocr2/test"
 	ocr3test "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/reportingplugin/ocr3/test"
+	test2 "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ext/ccip/test"
+	mediantest "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ext/median/test"
+	mercurytest "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ext/mercury/test"
+	relayertest "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/test"
 	"google.golang.org/grpc"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop"
-	cciptest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/ccip/test"
-	mediantest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/median/test"
-	mercurytest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/mercury/test"
-	relayertest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/reportingplugins"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/reportingplugins/ocr3"
@@ -170,7 +170,7 @@ func main() {
 			HandshakeConfig: loop.PluginCCIPExecutionHandshakeConfig(),
 			Plugins: map[string]plugin.Plugin{
 				loop.CCIPExecutionLOOPName: &loop.ExecutionLoop{
-					PluginServer: cciptest.ExecFactoryServer(lggr),
+					PluginServer: test2.ExecFactoryServer(lggr),
 					BrokerConfig: loop.BrokerConfig{Logger: lggr, StopCh: stopCh}},
 			},
 			GRPCServer: grpcServer,
@@ -184,7 +184,7 @@ func main() {
 			HandshakeConfig: loop.PluginCCIPCommitHandshakeConfig(),
 			Plugins: map[string]plugin.Plugin{
 				loop.CCIPCommitLOOPName: &loop.CommitLoop{
-					PluginServer: cciptest.CommitFactoryServer(lggr),
+					PluginServer: test2.CommitFactoryServer(lggr),
 					BrokerConfig: loop.BrokerConfig{Logger: lggr, StopCh: stopCh}},
 			},
 			GRPCServer: grpcServer,

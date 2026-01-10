@@ -7,6 +7,8 @@ import (
 	"sync"
 
 	"github.com/google/uuid"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/contractreader"
+	"github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/contractwriter"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -19,8 +21,6 @@ import (
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/pb/relayerset"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/contractreader"
-	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/contractwriter"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
 	"github.com/smartcontractkit/chainlink-common/pkg/types"
 	"github.com/smartcontractkit/chainlink-common/pkg/types/core"

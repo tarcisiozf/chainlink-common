@@ -7,11 +7,11 @@ import (
 	pipelinetest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/pipeline/test"
 	telemetrytest "github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/telemetry/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/core/services/validation/test"
+	mediantest "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ext/median/test"
+	ocr2test "github.com/smartcontractkit/chainlink-common/pkg/loop/relayer/pluginprovider/ocr2/test"
 	"google.golang.org/grpc"
 
 	"github.com/smartcontractkit/chainlink-common/pkg/logger"
-	mediantest "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ext/median/test"
-	ocr2test "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/relayer/pluginprovider/ocr2/test"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test"
 	testtypes "github.com/smartcontractkit/chainlink-common/pkg/loop/internal/test/types"
 	"github.com/smartcontractkit/chainlink-common/pkg/loop/net"
