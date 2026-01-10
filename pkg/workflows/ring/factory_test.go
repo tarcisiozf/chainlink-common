@@ -4,40 +4,66 @@ import (
 	"context"
 	"testing"
 
-	"github.com/smartcontractkit/chainlink-common/pkg/logger"
 	"github.com/smartcontractkit/libocr/offchainreporting2plus/ocr3types"
 	"github.com/stretchr/testify/require"
+
+	"github.com/smartcontractkit/chainlink-common/pkg/logger"
+	"github.com/smartcontractkit/chainlink-common/pkg/workflows/ring/pb"
+	"github.com/smartcontractkit/chainlink-common/pkg/workflows/shardorchestrator"
 )
 
 func TestFactory_NewFactory(t *testing.T) {
 	lggr := logger.Test(t)
 	store := NewStore()
+	shardOrchestratorStore := shardorchestrator.NewStore(lggr)
 	arbiter := &mockArbiter{}
 
-	t.Run("with_nil_config", func(t *testing.T) {
-		f, err := NewFactory(store, arbiter, lggr, nil)
-		require.NoError(t, err)
-		require.NotNil(t, f)
-	})
+	tests := []struct {
+		name      string
+		arbiter   pb.ArbiterScalerClient
+		config    *ConsensusConfig
+		wantErr   bool
+		errSubstr string
+	}{
+		{
+			name:    "with_nil_config",
+			arbiter: arbiter,
+			config:  nil,
+			wantErr: false,
+		},
+		{
+			name:    "with_custom_config",
+			arbiter: arbiter,
+			config:  &ConsensusConfig{BatchSize: 50},
+			wantErr: false,
+		},
+		{
+			name:      "nil_arbiter_returns_error",
+			arbiter:   nil,
+			config:    nil,
+			wantErr:   true,
+			errSubstr: "arbiterScaler is required",
+		},
+	}
 
-	t.Run("with_custom_config", func(t *testing.T) {
-		cfg := &ConsensusConfig{BatchSize: 50}
-		f, err := NewFactory(store, arbiter, lggr, cfg)
-		require.NoError(t, err)
-		require.NotNil(t, f)
-	})
-
-	t.Run("nil_arbiter_returns_error", func(t *testing.T) {
-		_, err := NewFactory(store, nil, lggr, nil)
-		require.Error(t, err)
-		require.Contains(t, err.Error(), "arbiterScaler is required")
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			f, err := NewFactory(store, shardOrchestratorStore, tt.arbiter, lggr, tt.config)
+			if tt.wantErr {
+				require.Error(t, err)
+				require.Contains(t, err.Error(), tt.errSubstr)
+			} else {
+				require.NoError(t, err)
+				require.NotNil(t, f)
+			}
+		})
+	}
 }
 
 func TestFactory_NewReportingPlugin(t *testing.T) {
 	lggr := logger.Test(t)
 	store := NewStore()
-	f, err := NewFactory(store, &mockArbiter{}, lggr, nil)
+	f, err := NewFactory(store, nil, &mockArbiter{}, lggr, nil)
 	require.NoError(t, err)
 
 	config := ocr3types.ReportingPluginConfig{N: 4, F: 1}
@@ -52,7 +78,7 @@ func TestFactory_NewReportingPlugin(t *testing.T) {
 func TestFactory_Lifecycle(t *testing.T) {
 	lggr := logger.Test(t)
 	store := NewStore()
-	f, err := NewFactory(store, &mockArbiter{}, lggr, nil)
+	f, err := NewFactory(store, nil, &mockArbiter{}, lggr, nil)
 	require.NoError(t, err)
 
 	err = f.Start(context.Background())
